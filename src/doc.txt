@@ -1,0 +1,14 @@
+Polymorphism ==> adalah bentuk dari bahasa yunani
+dalam bahasa OOP Polymorphism merupakan kemampuan sebuah object untuk berubah bentuk ke bentuk lain dari turunannya
+
+Variable Hiding ==> dimana kesamaan dari nama field yang ada di class perent dan class child nya
+
+Access Modifier ==> kemampuan membuat class field method dan constructor dapat di akses dimana saja ada 4 access level
+1. public
+2. protected
+3. no modifier
+4. private
+
+Encapsulation ==> memastikan data sensitif sebuah object tersembunyi dari akses luar
+Getter adalah function yang di buat untuk mengambil data field nya
+Setter adalah function untuk mengubah data field nya
