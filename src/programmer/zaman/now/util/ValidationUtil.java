@@ -1,5 +1,7 @@
 package programmer.zaman.now.util;
 
+import java.lang.reflect.Field;
+import programmer.zaman.now.annotation.NotBlank;
 import programmer.zaman.now.data.LoginRequest;
 import programmer.zaman.now.error.BlankException;
 import programmer.zaman.now.error.ValidationException;
@@ -29,6 +31,29 @@ public class ValidationUtil {
             throw new NullPointerException("Password tidak boleh null");
         } else if (loginRequest.password().isBlank()) {
             throw new BlankException("Password jangan kosong");
+        }
+    }
+
+    // membuat validasi reflection
+    public static void validationReflection(Object object) {
+        Class aclass = object.getClass();
+        Field[] fields = aclass.getDeclaredFields();
+
+        for (var field : fields) {
+            // kan field ada yang ga bisa di akses maka jadikan
+            field.setAccessible(true);
+            if (field.getAnnotation(NotBlank.class) != null) {
+                // validate
+                try {
+                    String value = (String) field.get(object);
+                    // kita cek
+                    if (value == null || value.isBlank()) {
+                        throw new BlankException("Field " + field.getName() + " " + "is Blank");
+                    }
+                } catch (IllegalAccessException e) {
+                    System.out.println("Tidak bisa mengakses field " + field.getName());
+                }
+            }
         }
     }
 }
